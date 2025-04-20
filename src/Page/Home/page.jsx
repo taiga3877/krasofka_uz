@@ -15,6 +15,7 @@ import comment from '../../assets/img.png'
 import comment1 from '../../assets/img (1).png'
 import comment2 from '../../assets/img (2).png'
 import { Link } from 'react-router-dom';
+import { useCartStore } from "../../Store/UseCartStore.js";
 
 const products = [
   { id: 1, image: new530, name: "New Balance 530", brand: "New Balance", price: 125 },
@@ -118,6 +119,8 @@ const conit = [
 
 
 const HomePage = ({ isExist, isExistCart }) => {
+  const { cartItems, addToCart, removeFromCart } = useCartStore();
+
   return (
     <div className="max-w-[1440px] mx-auto px-4">
       {/* Hero Section */}
@@ -184,22 +187,41 @@ const HomePage = ({ isExist, isExistCart }) => {
         <br />
         <p className='font-bold text-center'>Duis vestibulum elit vel neque pharetra</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-wrap gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white shadow-lg rounded-2xl p-4 transition-transform transform  hover:scale-105"
-            >
-              <Link to={`/product/${product.id}`}>
-              <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg" />
-              <h2 className="text-lg font-semibold mt-3">{product.name}</h2>
-              </Link>
-              <p className="text-gray-700 text-lg flex  items-center  justify-between">${product.price} <img src={isExist ? <MdFavoriteBorder className='text-2xl' /> : <MdFavorite className='text-2xl' />} alt="" /></p>
-              <button className="mt-3 w-full py-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition">
-                Add to cart
-              </button>
-            </div>
-          ))}
-        </div>
+  {products.map((product) => {
+    const isInCart = cartItems.some((item) => item.id === product.id);
+
+    return (
+      <div
+        key={product.id}
+        className="bg-white shadow-lg rounded-2xl p-4 transition-transform transform hover:scale-105"
+      >
+        <Link to={`/product/${product.id}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+          <h2 className="text-lg font-semibold mt-3">{product.name}</h2>
+        </Link>
+        <p className="text-gray-700 text-lg flex items-center justify-between">
+          ${product.price}
+
+        </p>
+        <button
+          onClick={() =>
+            isInCart ? removeFromCart(product.id) : addToCart(product)
+          }
+          className={`mt-3 w-full py-2 ${
+            isInCart ? 'bg-gray-400 hover:bg-gray-500' : 'bg-red-500 hover:bg-red-600'
+          } text-white font-bold rounded-lg transition duration-200`}
+        >
+          {isInCart ? 'Remove from cart' : 'Add to cart'}
+        </button>
+      </div>
+    );
+  })}
+</div>
+
       </div>
       <br />
       <br />
@@ -234,23 +256,40 @@ const HomePage = ({ isExist, isExistCart }) => {
       <h1 className='text-4xl text-center font-bold p-[8px]'>New Products Arrival</h1>
       <p className='text-[18px] font-light text-center p-[8px]'>Duis vestibulum elit vel neque pharetra</p>'
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 flex-wrap lg:grid-cols-4 gap-6">
-        {product2.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white shadow-lg rounded-2xl p-4  transition-transform transform hover:scale-105"
-          >
-            <Link to={`/product/${product.id}`}>
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg" />
-            <h2 className="text-lg font-semibold mt-3">{product.brand}</h2>
-            </Link>
-            <p className="text-gray-700 text-lg flex  items-center  justify-between">${product.price} <span className='flex'>
-            </span> </p>
-            <button className="mt-3 w-full py-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition">
-              Add to cart
-            </button>
-          </div>
-        ))}
+  {product2.map((product) => {
+    const isInCart = cartItems.some((item) => item.id === product.id); // вычисляем, есть ли товар в корзине
+
+    return (
+      <div
+        key={product.id}
+        className="bg-white shadow-lg rounded-2xl p-4 transition-transform transform hover:scale-105"
+      >
+        <Link to={`/product/${product.id}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+          <h2 className="text-lg font-semibold mt-3">{product.brand}</h2>
+        </Link>
+        <p className="text-gray-700 text-lg flex items-center justify-between">
+          ${product.price}
+        </p>
+        <button
+          onClick={() =>
+            isInCart ? removeFromCart(product.id) : addToCart(product)
+          }
+          className={`mt-3 w-full py-2 ${
+            isInCart ? 'bg-gray-400 hover:bg-gray-500' : 'bg-red-500 hover:bg-red-600'
+          } text-white font-bold rounded-lg transition duration-200`}
+        >
+          {isInCart ? 'Remove from cart' : 'Add to cart'}
+        </button>
       </div>
+    );
+  })}
+</div>
+
       <br />
       <br />
       <h1 className="text-3xl md:text-5xl font-bold text-center p-4">
