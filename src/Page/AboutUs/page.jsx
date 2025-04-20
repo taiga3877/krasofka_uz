@@ -124,7 +124,7 @@ const About = () => {
       <br />
       <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 drop-shadow-lg tracking-tight animate-fade-in-up">Our Incredible Team</h1>
       <br />
-      <hr className='text-center m-auto w-[700px] h-[4px] bg-red-500 border-none' />
+      <hr className='text-center m-auto w-full h-[4px] bg-red-500 border-none' />
       <br />
       <br />
       <div className="w-full px-4 sm:px-6 lg:px-8 py-10">
