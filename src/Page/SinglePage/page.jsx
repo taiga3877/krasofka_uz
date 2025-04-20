@@ -6,7 +6,7 @@ import new327 from '../../assets/new balance 327.png'
 import nikeblack from '../../assets/nike black.png'
 import { motion } from "framer-motion";
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import { useLikeStore } from '../../Store/UseLikeStore';
+import { useLikeStore } from '../../Store/UseLikeStore.js';
 
 const products = [
   {

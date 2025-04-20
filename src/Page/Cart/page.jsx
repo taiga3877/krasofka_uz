@@ -1,6 +1,5 @@
 import React from 'react';
-import { useCartStore } from '../../Store/useCartStore';
-import { MdDelete } from 'react-icons/md';
+import { useCartStore } from '../../Store/useCartStore.js';
 import samba from '../../assets/adidas samba.png';
 
 const CartPage = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLikeStore } from '../../Store/UseLikeStore';
+import { useLikeStore } from '../../Store/UseLikeStore.js';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'; // filled heart
 
 const Like = () => {
