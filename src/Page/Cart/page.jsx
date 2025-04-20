@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCartStore } from '../../Store/useCartStore.js';
+import { useCartStore } from '../../Store/UseCartStore.js';
 import samba from '../../assets/adidas samba.png';
 
 const CartPage = () => {

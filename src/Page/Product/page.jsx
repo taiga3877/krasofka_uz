@@ -7,7 +7,7 @@ import new327 from '../../assets/new balance 327.png'
 import nikeblack from '../../assets/nike black.png'
 import { useLikeStore } from "../../Store/UseLikeStore.js";
 import { Link } from "react-router-dom";
-import { useCartStore } from "../../Store/useCartStore.js";
+import { useCartStore } from "../../Store/UseCartStore.js";
 
      const products = [
         {
