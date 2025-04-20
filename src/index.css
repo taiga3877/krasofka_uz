@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+* {
+    font-family: "DM Sans", sans-serif;
+}
+
+body {
+    padding-top: 120px; /* или замените на актуальную высоту вашего заголовка */
+  }
