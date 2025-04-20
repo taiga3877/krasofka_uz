@@ -5,9 +5,9 @@ import samba from '../../assets/adidas samba.png'
 import new530 from '../../assets/new balance 530.png'
 import new327 from '../../assets/new balance 327.png'
 import nikeblack from '../../assets/nike black.png'
-import { useLikeStore } from "../../Store/UseLikeStore";
+import { useLikeStore } from "../../Store/UseLikeStore.js";
 import { Link } from "react-router-dom";
-import { useCartStore } from "../../Store/useCartStore";
+import { useCartStore } from "../../Store/useCartStore.js";
 
      const products = [
         {
