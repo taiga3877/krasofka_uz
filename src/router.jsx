@@ -9,6 +9,7 @@ import Like from "./Page/Like/page";
 import SinglePage from './Page/SinglePage/page'
 import LocationPage from "./Page/Location/page";
 import CartPage from "./Page/Cart/page";
+import BuyProduct from "./Page/BuyProduct/page";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path:"cartpage",
         element:<CartPage/>
+      },
+      {
+        path:"buyitems",
+        element:<BuyProduct/>
       }
     ],
   },

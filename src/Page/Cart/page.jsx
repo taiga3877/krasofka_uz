@@ -1,8 +1,10 @@
 import React from 'react';
 import { useCartStore } from '../../Store/UseCartStore.js';
-import samba from '../../assets/adidas samba.png';
+import { Link } from 'react-router-dom';
+
 
 const CartPage = () => {
+
   // Access cart items, removeFromCart, and updateQuantity from the store
   const { cartItems, removeFromCart, updateQuantity } = useCartStore();
 
@@ -21,13 +23,17 @@ const CartPage = () => {
           {cartItems.map((item) => (
             <div key={item.id} className="flex items-center justify-between bg-white shadow-md rounded-xl p-4">
               <div className="flex items-center gap-4">
+              <Link to={`/product/${item.id}`}>
                 <img
-                  src={item.image || samba} // Default image if no image is found
+                  src={item.image || samba} // Default image if no image is found 
                   alt={item.name}
                   className="w-20 h-20 rounded-lg object-cover"
                 />
+              </Link>
                 <div>
+                <Link to={`/product/${item.id}`}>
                   <h2 className="text-xl font-semibold">{item.name}</h2>
+                </Link>
                   <p className="text-gray-700">${item.price}</p>
                 </div>
               </div>
@@ -42,6 +48,7 @@ const CartPage = () => {
                   type="number"
                   value={item.quantity}
                   onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                  placeholder={item.quantity}
                   className="w-12 text-center border rounded-md"
                 />
                 <button
@@ -60,9 +67,19 @@ const CartPage = () => {
             </div>
           ))}
 
-          <div className="text-right text-xl font-semibold pt-4">
-            Total: ${totalPrice.toFixed(2)}
-          </div>
+<div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t mt-6">
+  <div className="text-xl font-semibold text-gray-800">
+    Total: <span className="text-red-500">${totalPrice.toFixed(2)}</span>
+  </div>
+  <Link to={'/buyitems'}>
+  <button
+    className="mt-4 sm:mt-0 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2 px-6 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+  >
+    Buy Product
+  </button>
+  </Link>
+</div>
+
         </div>
       )}
     </div>
