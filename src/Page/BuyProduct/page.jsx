@@ -19,7 +19,7 @@ const BuyProduct = () => {
         const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
         const name = event.target.name.value;
-        const number = event.target.email.value;
+        const number = event.target.number.value;
         const message = event.target.message.value;
 
         const fullMessage = `📬 New Buy Product:\n\n👤 Name: ${name}\n📱 Phone: ${number}\n📝💬 Message: ${message}`;
@@ -31,7 +31,7 @@ const BuyProduct = () => {
             });
 
             // Симулируем задержку на 7 секунд
-            await new Promise((resolve) => setTimeout(resolve, 7000));
+            await new Promise((resolve) => setTimeout(resolve, 4000));
 
             toast.success("Mission complete ✅", {
                 position: "top-right",
@@ -73,6 +73,7 @@ const BuyProduct = () => {
                                 type="text"
                                 id="name"
                                 name="name"
+                                placeholder='Islom'
                                 required
                                 className="w-full h-[48px] px-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 transition"
                             />
@@ -84,6 +85,7 @@ const BuyProduct = () => {
                             <input
                                 type="number"
                                 id="number"
+                                placeholder='+998 90 123 45 67'
                                 name="number"
                                 required
                                 className="w-full h-[48px] px-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 transition"
@@ -93,10 +95,11 @@ const BuyProduct = () => {
 
                         {/* Message */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Your Message *</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Name of Product *</label>
                             <textarea
                                 id="message"
                                 name="message"
+                                placeholder='For example: New balance 327'
                                 required
                                 className="w-full h-[120px] px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 resize-none transition"
                             ></textarea>

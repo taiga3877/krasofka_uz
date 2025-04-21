@@ -9,7 +9,8 @@ const useCartStore = create((set, get) => ({
 
     if (isAlreadyInCart) return;
 
-    const updatedCart = [...cartItems, item];
+    const itemWithQuantity = { ...item, quantity: 1 };
+    const updatedCart = [...cartItems, itemWithQuantity];
     localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     set({ cartItems: updatedCart });
   },
@@ -29,9 +30,15 @@ const useCartStore = create((set, get) => ({
   updateQuantity: (id, quantity) => {
     const { cartItems } = get();
 
-    // Prevent updating quantity to less than 1
-    if (quantity < 1) return;
+    // ❌ Удалить товар, если quantity < 1
+    if (quantity < 1) {
+      const updatedCart = cartItems.filter((item) => item.id !== id);
+      localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+      set({ cartItems: updatedCart });
+      return;
+    }
 
+    // ✅ Иначе — обновляем количество
     const updatedCart = cartItems.map((item) =>
       item.id === id ? { ...item, quantity } : item
     );

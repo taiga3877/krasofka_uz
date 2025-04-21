@@ -7,6 +7,7 @@ import nikeblack from '../../assets/nike black.png'
 import { motion } from "framer-motion";
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useLikeStore } from '../../Store/UseLikeStore.js';
+import { useCartStore } from '../../Store/UseCartStore.js';
 
 const products = [
   {
@@ -406,7 +407,11 @@ const ProductDetail = () => {
   }
 
   const { likedItems, toggleLike } = useLikeStore();
+  const { cartItems, addToCart, removeFromCart } = useCartStore();
+
   const isLiked = likedItems.some((item) => item.id === product.id);
+  const isInCart = cartItems.some((item) => item.id === product.id);
+
   return (
     <motion.div
       className="max-w-5xl mx-auto p-6"
@@ -471,9 +476,16 @@ const ProductDetail = () => {
                 <MdFavoriteBorder className="text-2xl text-gray-500" />
               )}
             </button>
-            <button className="mt-3 w-full py-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition">
-              Add to cart
-            </button>
+            <button
+                    onClick={() =>
+                      isInCart ? removeFromCart(product.id) : addToCart(product)
+                    }
+                    className={`mt-3 w-full py-2 ${
+                      isInCart ? 'bg-gray-400 hover:bg-gray-500' : 'bg-red-500 hover:bg-red-600'
+                    } text-white font-bold rounded-lg transition duration-200`}
+                  >
+                    {isInCart ? 'Remove from cart' : 'Add to cart'}
+                  </button>
           </ul>
         </div>
       </div>
