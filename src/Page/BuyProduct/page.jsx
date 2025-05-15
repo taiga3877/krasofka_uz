@@ -14,7 +14,7 @@ const BuyProduct = () => {
         setLoading(true);
         setButtonText("Sending...");
 
-        const token = '8008921149:AAFYLw0qJ0G6vUxg1K-VJdRft-H6H6m1rnI';
+        const token = '8076107371:AAGso6mhQYQWY-C7CtOi14utVFYSESggwVA';
         const chat_id = 6365725666;
         const url = `https://api.telegram.org/bot${token}/sendMessage`;
 

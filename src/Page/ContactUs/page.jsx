@@ -154,7 +154,7 @@ const ContactUs = () => {
           <p className="text-gray-500 mb-8">Please fill out the form below and we’ll be in touch soon.</p>
 
           <form
-            onSubmit={(e) => SendMessage(e, setLoading, setButtonText)}
+              onSubmit={(e) => SendMessage(e, setLoading, setButtonText)}
             id="myForm"
             className="space-y-6"
           >
